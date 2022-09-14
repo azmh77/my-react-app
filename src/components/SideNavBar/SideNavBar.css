@@ -1,0 +1,84 @@
+/* NX = not expanded */
+
+.side-nav-container {
+  background-color: var(--primary);
+  width: 300px;
+  height: 100vh;
+  color: var(--white);
+  transition: 0.4s;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-bottom-left-radius: 0px;
+}
+.side-nav-container-NX {
+  width: 150px;
+  border-bottom-left-radius: 100px;
+}
+
+.nav-upper,
+.nav-heading {
+  /* border: 2px solid white; */
+  display: grid;
+}
+
+.nav-heading {
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr;
+  height: 75px;
+}
+
+.nav-brand {
+  display: flex;
+  color: var(--white);
+  margin: 0 auto;
+  margin-top: 25px;
+}
+
+.hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: auto;
+}
+
+.hamburger span {
+  display: block;
+  margin-top: 5px;
+  background-color: var(--white);
+  border-radius: 15px;
+  height: 3px;
+  width: 25px;
+
+  transition: 0.4s;
+}
+
+.hamburger:hover span {
+  background-color: var(--white);
+}
+
+.hamburger-in:hover span:nth-child(1) {
+  width: 25px;
+  transform: translateY(3px) rotate(25deg);
+}
+.hamburger-in:hover span:nth-child(2) {
+  width: 40px;
+}
+.hamburger-in:hover span:nth-child(3) {
+  width: 25px;
+  transform: translateY(-3px) rotate(-25deg);
+}
+
+.hamburger-out {
+  margin-right: 19px;
+}
+.hamburger-out:hover span:nth-child(1) {
+  width: 25px;
+  transform: translate(-16px, 3px) rotate(155deg);
+}
+.hamburger-out:hover span:nth-child(2) {
+  width: 40px;
+}
+.hamburger-out:hover span:nth-child(3) {
+  width: 25px;
+  transform: translate(-16px, -3px) rotate(-155deg);
+}

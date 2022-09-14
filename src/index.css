@@ -1,13 +1,19 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --primary: #274c77;
+  --primary_2: #6096b4;
+  --primary_3: #a3cef1;
+  --dark: #8b8c89;
+  --white: rgb(255, 255, 255);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+  font-family: yekan;
+  src: url("../public/Fonts/yekan.woff") format("woff");
+  font-weight: normal;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: yekan !important;
 }

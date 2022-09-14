@@ -1,0 +1,58 @@
+[
+  {
+    "title": "داشبورد",
+    "icon": "bi bi-grid-3x3-gap",
+    "path": "/"
+  },
+  {
+    "title": "اطلاعات پایه",
+    "icon": "bi bi-info-circle",
+    "childrens": [
+      {
+        "title": "بانک ها",
+        "icon": "bi bi-bank",
+        "path": "/Banks"
+      },
+      {
+        "title": "پروژه ها",
+        "icon": "bi bi-list-stars",
+        "path": "/Project"
+      },
+      {
+        "title": "مراکز هزینه",
+        "icon": "bi bi-house-fill",
+        "path": "/Costcenter"
+      },
+      {
+        "title": "سال مالی",
+        "icon": "bi bi-coin",
+        "path": "/FiscalYear"
+      },
+      {
+        "title": "واحد های اداری",
+        "icon": "bi bi-bank2",
+        "path": "/Unit"
+      },
+      {
+        "title": "صنوف",
+        "icon": "bi bi-bookmark-plus-fill",
+        "path": "/Guild"
+      },
+      {
+        "title": "تنظیمات",
+        "icon": "bi bi-gear-wide-connected",
+        "path": "/Company"
+      },
+      {
+        "title": "معرفی گاربران",
+        "icon": "bi bi-person-plus-fill",
+        "path": "/Users"
+      },
+      {
+        "title": "معرفی شعب",
+        "icon": "bi bi-building",
+        "path": "/Branch"
+      }
+    ]
+  }
+]
