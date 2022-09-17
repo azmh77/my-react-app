@@ -1,0 +1,8 @@
+.ag-theme-alpine {
+  --ag-foreground-color: var(--primary) !important;
+  --ag-header-foreground-color: white !important;
+  --ag-header-background-color: var(--primary) !important;
+
+  --ag-font-size: 14px !important;
+  --ag-font-family: yekan !important;
+}

@@ -2,17 +2,15 @@
 
 .side-nav-container {
   background-color: var(--primary);
-  width: 300px;
+  width: 350px;
   height: 100vh;
   color: var(--white);
   transition: 0.4s;
   overflow-x: hidden;
   overflow-y: auto;
-  border-bottom-left-radius: 0px;
 }
 .side-nav-container-NX {
-  width: 150px;
-  border-bottom-left-radius: 100px;
+  width: 200px;
 }
 
 .nav-upper,

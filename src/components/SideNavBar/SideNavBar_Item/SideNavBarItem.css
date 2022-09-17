@@ -10,6 +10,7 @@
 .sidebar-title {
   display: flex;
   justify-content: space-between;
+  cursor: pointer;
 }
 
 .sidebar-title div {
@@ -19,11 +20,11 @@
 }
 
 .sidebar-title i {
-  font-size: 26px;
+  font-size: 20px;
 }
 
 .sidebar-title div div {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .sidebar-title .toggle-btn {
@@ -48,10 +49,10 @@
 
 @media screen and (max-width: 756px) {
   .sidebar-title div div {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .sidebar-title i {
-    font-size: 16px;
+    font-size: 14px;
   }
 }

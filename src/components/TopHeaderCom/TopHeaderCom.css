@@ -1,0 +1,46 @@
+.Top-component-Header {
+  background: var(--primary);
+  width: 80%;
+  height: auto;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.Top-component-Header div {
+  margin: 15px 0;
+}
+
+.Top-component-Header div h5 {
+  color: #dff6ff;
+  margin: 0;
+  font-weight: bold;
+}
+
+.Top-component-Header div h6 {
+  color: #dff6ff;
+  margin: 0 10px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.Top-component-Header div div select {
+  background-color: #dff6ff;
+  color: #395b64;
+  border: none;
+  outline: none;
+  font-size: 12px;
+}
+
+.BankName-Icon div i {
+  font-size: 20px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.excel-color {
+  color: #037945;
+}
+
+.pdf-color {
+  color: #b30b00;
+}

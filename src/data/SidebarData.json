@@ -54,5 +54,122 @@
         "path": "/Branch"
       }
     ]
+  },
+  {
+    "title": "اشخاص",
+    "icon": "bi bi-grid-3x3-gap",
+    "path": "/",
+    "childrens": [
+      {
+        "title": "معرفی پرسنل",
+        "icon": "bi bi-bank",
+        "path": "/Banks"
+      },
+      {
+        "title": "معرفی اسخاص حقیقی",
+        "icon": "bi bi-list-stars",
+        "path": "/Project"
+      },
+      {
+        "title": "معرفی اشخاص حقوقی",
+        "icon": "bi bi-bank",
+        "path": "/Banks"
+      }
+    ]
+  },
+  {
+    "title": "حسابداری و مالی",
+    "icon": "bi bi-grid-3x3-gap",
+    "path": "/",
+    "childrens": [
+      {
+        "title": "درخت تفضیلی",
+        "icon": "bi bi-bank",
+        "path": "/Banks"
+      },
+      {
+        "title": "درخت حسابها",
+        "icon": "bi bi-list-stars",
+        "path": "/Project"
+      },
+      {
+        "title": "اسناد حسابداری",
+        "icon": "bi bi-bank",
+        "path": "/Banks"
+      },
+      {
+        "title": "سرفصل ها",
+        "icon": "bi bi-list-stars",
+        "path": "/Project",
+        "childrens": [
+          {
+            "title": "حسابهای کل",
+            "icon": "bi bi-bank",
+            "path": "/Banks"
+          },
+          {
+            "title": "حسابهای معین",
+            "icon": "bi bi-list-stars",
+            "path": "/Project"
+          }
+        ]
+      },
+      {
+        "title": "گزارشات",
+        "icon": "bi bi-list-stars",
+        "path": "/Project",
+        "childrens": [
+          {
+            "title": "تراز",
+            "icon": "bi bi-bank",
+            "path": "/Banks"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "دریافت و پرداخت",
+    "icon": "bi bi-grid-3x3-gap",
+    "path": "/",
+    "childrens": [
+      {
+        "title": "حسابهای بانکی",
+        "icon": "bi bi-bank",
+        "path": "/Banks"
+      },
+      {
+        "title": "دسته چک",
+        "icon": "bi bi-list-stars",
+        "path": "/Project"
+      }
+    ]
+  },
+  {
+    "title": "انبار داری",
+    "icon": "bi bi-grid-3x3-gap",
+    "path": "/",
+    "childrens": [
+      {
+        "title": "معرفی انبار ها",
+        "icon": "bi bi-bank",
+        "path": "/Banks"
+      },
+      {
+        "title": "معرفی واحدهای کالا",
+        "icon": "bi bi-list-stars",
+        "path": "/Project"
+      },
+      {
+        "title": "گروه کالاها",
+        "icon": "bi bi-list-stars",
+        "path": "/Project"
+      },
+      {
+        "title": "کالاها",
+        "icon": "bi bi-list-stars",
+        "path": "/Project"
+      }
+    ]
   }
 ]

@@ -1,0 +1,20 @@
+.Modale {
+  position: fixed;
+  z-index: 1000;
+  width: 30%;
+  border-radius: 5px;
+  padding: 16px;
+  left: 32%;
+  top: 40%;
+  box-sizing: border-box;
+  text-align: center;
+  transition: all 0.3s ease-out;
+}
+
+@media (max-width: 60rem) {
+  .Modale {
+    width: 70%;
+    top: 40%;
+    left: 10%;
+  }
+}

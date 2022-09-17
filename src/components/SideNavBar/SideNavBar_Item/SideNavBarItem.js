@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { FcPrevious } from "react-icons/fc";
+import { NavLink } from "react-router-dom";
 
 import "./SideNavBarItem.css";
 
@@ -14,7 +15,7 @@ const SideNavBarItem = ({ item, isExpanded }) => {
     return (
       <div className="nav-menu">
         <div className={isOpen ? "sidebar-item open" : "sidebar-item"}>
-          <div className="sidebar-title">
+          <div className="sidebar-title" onClick={() => setIsOpen(!isOpen)}>
             <div>
               <i className={item.icon}></i>
               <div>{item.title}</div>
@@ -40,9 +41,9 @@ const SideNavBarItem = ({ item, isExpanded }) => {
         <div className="sidebar-title">
           <div>
             <i className={item.icon}></i>
-            <div to={item.path}>
+            <NavLink to={item.path} className="nav-link">
               <div>{item.title}</div>
-            </div>
+            </NavLink>
           </div>
         </div>
       </div>
