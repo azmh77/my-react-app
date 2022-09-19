@@ -199,7 +199,7 @@ const Banks = () => {
           </form>
         </Modal>
         <Modal show={editBank_Modal} modalClose={modalClose}>
-          Hello Word ! -- edite bank
+          <div className="text-white">Hello Word ! -- edite bank</div>
         </Modal>
         <TopHeaderCom
           title="بانک ها"
