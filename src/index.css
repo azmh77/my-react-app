@@ -16,4 +16,12 @@ body {
   margin: 0;
   padding: 0;
   font-family: yekan !important;
+  background: url("../public//img/tijana-drndarski-JWmNS05a_Hs-unsplash.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-clip: border-box;
+  background-origin: border-box;
+  background-blend-mode: luminosity;
+  background-color: var(--dark);
 }

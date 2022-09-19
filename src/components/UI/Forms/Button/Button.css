@@ -1,0 +1,23 @@
+.Button {
+  width: 250px;
+  padding: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 5px solid var(--primary_3);
+  border-top: none;
+  border-bottom: none;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  transition: all 0.5s;
+}
+
+.Button:hover {
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  width: 350px;
+  background: rgba(255, 255, 255, 0.3);
+}

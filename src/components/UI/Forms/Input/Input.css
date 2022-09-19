@@ -1,0 +1,19 @@
+.input {
+  font-family: inherit;
+  background: rgba(255, 255, 255, 0.1);
+  border: 5px solid var(--primary_3);
+  color: var(--primary_3);
+  border-top: none;
+  border-bottom: none;
+  outline: none;
+  font-size: 14px;
+  padding: 15px 30px;
+  width: 250px;
+  border-top-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+input::placeholder {
+  color: var(--primary_3) !important;
+  font-size: 12px;
+}

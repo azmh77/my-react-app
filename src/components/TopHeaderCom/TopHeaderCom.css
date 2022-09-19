@@ -44,3 +44,14 @@
 .pdf-color {
   color: #b30b00;
 }
+
+.ag-paging-row-summary-panel {
+  display: none !important;
+}
+
+.AddBankName {
+  font-size: 18px !important;
+  color: var(--primary_3) !important;
+  font-weight: bolder;
+  margin-top: 3px;
+}

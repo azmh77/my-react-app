@@ -1,0 +1,7 @@
+.btn,
+.btn:active {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  cursor: pointer !important;
+}

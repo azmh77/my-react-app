@@ -10,3 +10,19 @@ export const banksAction = async (dispatch) => {
   let payload = response;
   dispatch({ type: "SUCCESS_REQUEST_BANKS", payload });
 };
+
+export const showAddBankModal = (dispatch) => {
+  dispatch({ type: "َSHOW_ADD_BANK_MODAL" });
+};
+
+export const closeAddBankModal = (dispatch) => {
+  dispatch({ type: "CLOSE_ADD_BANK_MODAL" });
+};
+
+export const showEditBankModal = (dispatch) => {
+  dispatch({ type: "َSHOW_EDIT_BANK_MODAL" });
+};
+
+export const closeEditeBankModal = (dispatch) => {
+  dispatch({ type: "CLOSE_EDIT_BANK_MODAL" });
+};
