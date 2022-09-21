@@ -9,6 +9,7 @@
   overflow-x: hidden;
   overflow-y: auto;
 }
+
 .side-nav-container-NX {
   width: 200px;
 }
@@ -79,4 +80,10 @@
 .hamburger-out:hover span:nth-child(3) {
   width: 25px;
   transform: translate(-16px, -3px) rotate(-155deg);
+}
+
+@media (max-width: 60rem) {
+  .side-nav-container {
+    display: none !important;
+  }
 }

@@ -65,18 +65,26 @@
   width: 250px;
   border-top-right-radius: 30px;
   border-bottom-left-radius: 30px;
-  margin: 10px;
+  margin: 10px 0 0 0;
 }
 
-.form-addBank {
-  background: var(--primary);
+.seletion option {
+  background-color: var(--dark);
+}
+
+.form-Bank {
+  background: rgba(0, 0, 0, 0.5);
   padding: 50px;
   border-bottom-right-radius: 100px;
   border-bottom-left-radius: 100px;
 }
 
-.form-addBank h6 {
+.form-Bank h6 {
   color: var(--primary_3);
   font-size: 18px;
   margin-bottom: 20px;
+}
+
+.form-Bank button {
+  margin: 10px 0 0 0;
 }

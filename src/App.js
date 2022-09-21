@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar/Navbar";
 import SideNavBar from "./components/SideNavBar/SideNavBar";
 import Dashbord from "./pages/Dashbord/Dashbord";
 import Banks from "./pages/Banks/Banks";
+import Project from "./pages/Projects/Project";
 
 import "./App.css";
 
@@ -18,6 +19,7 @@ const App = () => {
           <Routes>
             <Route path={"/"} element={<Dashbord />} />
             <Route path={"/Banks"} element={<Banks />} />
+            <Route path={"/Project"} element={<Project />} />
           </Routes>
         </div>
       </Router>

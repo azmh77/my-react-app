@@ -5,12 +5,12 @@ import swal from "sweetalert";
 import axios from "axios";
 
 import {
-  banksAction,
-  showAddBankModal,
-  closeAddBankModal,
-  showEditBankModal,
-  closeEditeBankModal,
-} from "./../../redux/actions/banksAction/banksAction";
+  projectAction,
+  showAddProjectModal,
+  closeAddProjectModal,
+  showEditProjectModal,
+  closeEditeProjectModal,
+} from "./../../redux/actions/projectAction/projectAction";
 
 import Wrapper from "./../../hoc/Wrapper";
 import Spinners from "./../../components/UI/Spinners_Loading/Spinner";
@@ -19,35 +19,30 @@ import TopHeaderCom from "./../../components/TopHeaderCom/TopHeaderCom";
 import Input from "./../../components/UI/Forms/Input/Input";
 import Button from "./../../components/UI/Forms/Button/Button";
 
-import "./Banks.css";
+import "./Project.css";
 
 const Banks = () => {
   let resalt = <Spinners title="در حال بارگذاری اطلاعات ..." />;
   const [id_For_Edit, setId_For_Edit] = useState();
   const addInput_Ref = useRef();
-  const addSelect_Ref = useRef();
   const editInput_Ref = useRef();
-  const editSelect_Ref = useRef();
 
   const gridRef = useRef();
   let { gridApi, gridColumnApi } = "";
   const dispatch = useDispatch();
-  const Banks = useSelector((state) => state.banks);
-  const { loading, banks, addBank_Modal, editBank_Modal } = Banks;
+  const Project = useSelector((state) => state.project);
+  const { loading, project, addProject_Modal, editProject_Modal } = Project;
 
-  const headersCSV = [
-    { lable: "نام بانک", key: "name" },
-    { lable: "نوع بانک", key: "typeBank" },
-  ];
+  const headersCSV = [{ lable: "نام پروژه", key: "name" }];
 
   const csvReport = {
-    filename: "لیست بانک ها",
+    filename: "لیست پروژه ها",
     headers: headersCSV,
-    data: banks,
+    data: project,
   };
 
   useEffect(() => {
-    dispatch(banksAction);
+    dispatch(projectAction);
   }, [dispatch]);
 
   let onGridReady = (params) => {
@@ -58,27 +53,26 @@ const Banks = () => {
 
   const columnDefs = [
     {
-      headerName: "نام بانک",
+      headerName: "نام پروژه",
       field: "name",
-    },
-    {
-      headerName: "نوع بانک",
-      field: "typeBank",
     },
     {
       headerName: "دستورات",
       field: "id",
       cellRendererFramework: (id) => (
         <div>
-          <button className="btn editeBtn" onClick={() => EditeBank(id.value)}>
+          <button
+            className="btn editeBtn"
+            onClick={() => EditeProject(id.value)}
+          >
             <i
               className="bi bi-pencil-square"
-              onClick={() => dispatch(showEditBankModal)}
+              onClick={() => dispatch(showEditProjectModal)}
             ></i>
           </button>
           <button
             className="btn deleteBtn"
-            onClick={() => RemoveBank(id.value)}
+            onClick={() => RemoveProject(id.value)}
           >
             <i className="bi bi-trash3"></i>
           </button>
@@ -107,17 +101,15 @@ const Banks = () => {
     gridRef.current.api.paginationSetPageSize(Number(value));
   }, []);
 
-  const EditeBank = (id) => {
-    const found = banks.find((item) => item.id === id);
+  const EditeProject = (id) => {
+    const found = project.find((item) => item.id === id);
     let name = found.name;
-    let typeBank = found.typeBank;
 
     setId_For_Edit(found.id);
     editInput_Ref.current.value = name;
-    editSelect_Ref.current.value = typeBank;
   };
 
-  const RemoveBank = (id) => {
+  const RemoveProject = (id) => {
     let message = "";
     let resultCode = "";
     swal({
@@ -129,7 +121,7 @@ const Banks = () => {
     }).then(async (willDelete) => {
       if (willDelete) {
         await axios
-          .delete(`http://37.32.26.0/api/Bank/${id}`)
+          .delete(`http://37.32.26.0/api/Project/${id}`)
           .then((response) => {
             resultCode = response.data.result;
             message = response.data.message;
@@ -141,7 +133,7 @@ const Banks = () => {
         if (resultCode === 3) {
           swal("موفق بود !", `${message}`, "success");
           setTimeout(() => {
-            dispatch(banksAction);
+            dispatch(projectAction);
           }, 2000);
         } else {
           swal("موفق نبود !", `${message}`, "error");
@@ -153,27 +145,25 @@ const Banks = () => {
   };
 
   const modalClose = () => {
-    dispatch(closeAddBankModal);
-    dispatch(closeEditeBankModal);
+    dispatch(closeAddProjectModal);
+    dispatch(closeEditeProjectModal);
     addInput_Ref.current.value = "";
     editInput_Ref.current.value = "";
-    addSelect_Ref.current.value = "";
-    editSelect_Ref.current.value = "";
   };
 
-  const addBankHandler = async (e) => {
+  const addProjectHandler = async (e) => {
     e.preventDefault();
     let message = "";
     let resultCode = "";
     let data = {
       id: 0,
       name: addInput_Ref.current.value,
-      typeBank: addSelect_Ref.current.value,
+      kod: "string",
+      companyId: 1,
     };
-
     if (data.name) {
       await axios
-        .post("http://37.32.26.0/api/Bank", data)
+        .post("http://37.32.26.0/api/Project", data)
         .then((response) => {
           resultCode = response.data.result;
           message = response.data.message;
@@ -185,7 +175,7 @@ const Banks = () => {
       if (resultCode === 3) {
         swal("موفق بود !", `${message}`, "success");
         setTimeout(() => {
-          dispatch(banksAction);
+          dispatch(projectAction);
         }, 2000);
       } else {
         swal("موفق نبود !", `${message}`, "error");
@@ -195,17 +185,18 @@ const Banks = () => {
     }
   };
 
-  const editBankHandler = async (e) => {
+  const editProjectHandler = async (e) => {
     e.preventDefault();
     let message = "";
     let resultCode = "";
     let data = {
       id: id_For_Edit,
       name: editInput_Ref.current.value,
-      typeBank: editSelect_Ref.current.value,
+      kod: "string",
+      companyId: 1,
     };
     await axios
-      .put("http://37.32.26.0/api/Bank", data)
+      .put("http://37.32.26.0/api/Project", data)
       .then((response) => {
         resultCode = response.data.result;
         message = response.data.message;
@@ -217,7 +208,7 @@ const Banks = () => {
     if (resultCode === 3) {
       swal("موفق بود !", `${message}`, "success");
       setTimeout(() => {
-        dispatch(banksAction);
+        dispatch(projectAction);
       }, 2000);
     } else {
       swal("موفق نبود !", `${message}`, "error");
@@ -227,49 +218,33 @@ const Banks = () => {
   if (!loading) {
     resalt = (
       <div className="w-100">
-        <Modal show={addBank_Modal} modalClose={modalClose}>
-          <form className="form-Bank showdow-lg" onSubmit={addBankHandler}>
-            <h6>اضافه کردن بانک</h6>
+        <Modal show={addProject_Modal} modalClose={modalClose}>
+          <form className="form-Bank showdow-lg" onSubmit={addProjectHandler}>
+            <h6>اضافه کردن پروژه</h6>
             <Input
               type={"text"}
-              placeholder="نام بانک ..."
+              placeholder="نام پروژه ..."
               Ref={addInput_Ref}
             />
-            <div>
-              <select className="seletion" ref={addSelect_Ref}>
-                <option value="0">دولتی</option>
-                <option value="1">خصوصی</option>
-                <option value="2">موسسه اعتباری</option>
-                <option value="3">قرض الحسنه</option>
-              </select>
-            </div>
             <Button type={"submit"}>تایید</Button>
           </form>
         </Modal>
-        <Modal show={editBank_Modal} modalClose={modalClose}>
-          <form className="form-Bank showdow-lg" onSubmit={editBankHandler}>
-            <h6>ویرایش کردن نام بانک</h6>
+        <Modal show={editProject_Modal} modalClose={modalClose}>
+          <form className="form-Bank showdow-lg" onSubmit={editProjectHandler}>
+            <h6>ویرایش کردن نام پروژه</h6>
             <Input
               type={"text"}
-              placeholder="نام بانک ..."
+              placeholder="نام پروژه ..."
               Ref={editInput_Ref}
             />
-            <div>
-              <select className="seletion" ref={editSelect_Ref}>
-                <option value="0">دولتی</option>
-                <option value="1">خصوصی</option>
-                <option value="2">موسسه اعتباری</option>
-                <option value="3">قرض الحسنه</option>
-              </select>
-            </div>
             <Button type={"submit"}>تایید</Button>
           </form>
         </Modal>
         <TopHeaderCom
-          title="بانک ها"
+          title="پروژه ها"
           csvReport={csvReport}
           onPageSizeChanged={onPageSizeChanged}
-          AddBankName={() => dispatch(showAddBankModal)}
+          AddBankName={() => dispatch(showAddProjectModal)}
         />
         <div
           className="ag-theme-alpine"
@@ -285,7 +260,7 @@ const Banks = () => {
             onGridReady={onGridReady}
             animateRows={true}
             enableRtl={true}
-            rowData={banks}
+            rowData={project}
             columnDefs={columnDefs}
             defaultColDef={defaultColDef}
             pagination={true}

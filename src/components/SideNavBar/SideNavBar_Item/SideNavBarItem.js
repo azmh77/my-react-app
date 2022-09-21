@@ -15,7 +15,10 @@ const SideNavBarItem = ({ item, isExpanded }) => {
     return (
       <div className="nav-menu">
         <div className={isOpen ? "sidebar-item open" : "sidebar-item"}>
-          <div className="sidebar-title" onClick={() => setIsOpen(!isOpen)}>
+          <div
+            className="sidebar-title"
+            onClick={!isExpanded ? null : () => setIsOpen(!isOpen)}
+          >
             <div>
               <i className={item.icon}></i>
               <div>{item.title}</div>

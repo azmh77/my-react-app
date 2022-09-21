@@ -1,11 +1,14 @@
 import "./Spinners.css";
 
-const Spinners = () => {
+const Spinners = (props) => {
   return (
-    <div>
-      <span className="loader"></span>
-      <h6 className="loader-text">در حال بارگذاری اطلاعات ...</h6>
-    </div>
+    <>
+      <div className="backdrope"></div>
+      <div className="spinner">
+        <span className="loader"></span>
+        <h6 className="loader-text">{props.title}</h6>
+      </div>
+    </>
   );
 };
 
