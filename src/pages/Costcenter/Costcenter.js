@@ -5,12 +5,13 @@ import swal from "sweetalert";
 import axios from "axios";
 
 import {
-  banksAction,
-  showAddBankModal,
-  closeAddBankModal,
-  showEditBankModal,
-  closeEditeBankModal,
-} from "./../../redux/actions/banksAction/banksAction";
+  costCenterAction,
+  showAddCostCenterModal,
+  closeAddCostCenterModal,
+  showEditCostCenterModal,
+  closeEditeCostCenterModal,
+} from "./../../redux/actions/costCenterAction/costCenterAction";
+import { projectAction } from "./../../redux/actions/projectAction/projectAction";
 
 import Wrapper from "./../../hoc/Wrapper";
 import Spinners from "./../../components/UI/Spinners_Loading/Spinner";
@@ -19,9 +20,9 @@ import TopHeaderCom from "./../../components/TopHeaderCom/TopHeaderCom";
 import Input from "./../../components/UI/Forms/Input/Input";
 import Button from "./../../components/UI/Forms/Button/Button";
 
-import "./Banks.css";
+import "./Costcenter.css";
 
-const Banks = () => {
+const Costcenter = () => {
   let resalt = <Spinners title="در حال بارگذاری اطلاعات ..." />;
   const [id_For_Edit, setId_For_Edit] = useState();
   const addInput_Ref = useRef();
@@ -32,22 +33,26 @@ const Banks = () => {
   const gridRef = useRef();
   let { gridApi, gridColumnApi } = "";
   const dispatch = useDispatch();
-  const Banks = useSelector((state) => state.banks);
-  const { loading, banks, addBank_Modal, editBank_Modal } = Banks;
+  const costCenter = useSelector((state) => state.CostCenter);
+  const Project = useSelector((state) => state.project);
+  const { loading, CostCenter, addCostCenter_Modal, editCostCenter_Modal } =
+    costCenter;
+  const { project } = Project;
 
   const headersCSV = [
-    { lable: "نام بانک", key: "name" },
-    { lable: "نوع بانک", key: "typeBank" },
+    { lable: "نام مرکز هزینه", key: "name" },
+    { lable: "پروژه", key: "project.name" },
   ];
 
   const csvReport = {
-    filename: "لیست بانک ها",
+    filename: "لیست مراکز هزینه",
     headers: headersCSV,
-    data: banks,
+    data: CostCenter,
   };
 
   useEffect(() => {
-    dispatch(banksAction);
+    dispatch(costCenterAction);
+    dispatch(projectAction);
   }, [dispatch]);
 
   let onGridReady = (params) => {
@@ -58,27 +63,30 @@ const Banks = () => {
 
   const columnDefs = [
     {
-      headerName: "نام بانک",
+      headerName: "نام مرکز هزینه",
       field: "name",
     },
     {
-      headerName: "نوع بانک",
-      field: "typeBank",
+      headerName: "پروژه",
+      field: "project.name",
     },
     {
       headerName: "دستورات",
       field: "id",
-      cellRenderer : (id) => (
+      cellRenderer: (id) => (
         <div>
-          <button className="btn editeBtn" onClick={() => EditeBank(id.value)}>
+          <button
+            className="btn editeBtn"
+            onClick={() => EditeCostcenter(id.value)}
+          >
             <i
               className="bi bi-pencil-square"
-              onClick={() => dispatch(showEditBankModal)}
+              onClick={() => dispatch(showEditCostCenterModal)}
             ></i>
           </button>
           <button
             className="btn deleteBtn"
-            onClick={() => RemoveBank(id.value)}
+            onClick={() => RemoveCostcenter(id.value)}
           >
             <i className="bi bi-trash3"></i>
           </button>
@@ -107,17 +115,16 @@ const Banks = () => {
     gridRef.current.api.paginationSetPageSize(Number(value));
   }, []);
 
-  const EditeBank = (id) => {
-    const found = banks.find((item) => item.id === id);
+  const EditeCostcenter = (id) => {
+    const found = CostCenter.find((item) => item.id === id);
     let name = found.name;
-    let typeBank = found.typeBank;
-
+    let project = found.project.id;
     setId_For_Edit(found.id);
     editInput_Ref.current.value = name;
-    editSelect_Ref.current.value = typeBank;
+    editSelect_Ref.current.value = project;
   };
 
-  const RemoveBank = (id) => {
+  const RemoveCostcenter = (id) => {
     let message = "";
     let resultCode = "";
     swal({
@@ -129,7 +136,7 @@ const Banks = () => {
     }).then(async (willDelete) => {
       if (willDelete) {
         await axios
-          .delete(`http://37.32.26.0/api/Bank/${id}`)
+          .delete(`http://37.32.26.0/api/CostCenter/${id}`)
           .then((response) => {
             resultCode = response.data.result;
             message = response.data.message;
@@ -141,7 +148,7 @@ const Banks = () => {
         if (resultCode === 3) {
           swal("موفق بود !", `${message}`, "success");
           setTimeout(() => {
-            dispatch(banksAction);
+            dispatch(costCenterAction);
           }, 2000);
         } else {
           swal("موفق نبود !", `${message}`, "error");
@@ -153,27 +160,28 @@ const Banks = () => {
   };
 
   const modalClose = () => {
-    dispatch(closeAddBankModal);
-    dispatch(closeEditeBankModal);
+    dispatch(closeAddCostCenterModal);
+    dispatch(closeEditeCostCenterModal);
     addInput_Ref.current.value = "";
     editInput_Ref.current.value = "";
     addSelect_Ref.current.value = "";
     editSelect_Ref.current.value = "";
   };
 
-  const addBankHandler = async (e) => {
+  const addCostcenterHandler = async (e) => {
     e.preventDefault();
     let message = "";
     let resultCode = "";
     let data = {
       id: 0,
       name: addInput_Ref.current.value,
-      typeBank: addSelect_Ref.current.value,
+      projectId: addSelect_Ref.current.value,
+      companyId: 1,
     };
-
+    console.log(data);
     if (data.name) {
       await axios
-        .post("http://37.32.26.0/api/Bank", data)
+        .post("http://37.32.26.0/api/CostCenter", data)
         .then((response) => {
           resultCode = response.data.result;
           message = response.data.message;
@@ -185,7 +193,7 @@ const Banks = () => {
       if (resultCode === 3) {
         swal("موفق بود !", `${message}`, "success");
         setTimeout(() => {
-          dispatch(banksAction);
+          dispatch(costCenterAction);
         }, 2000);
       } else {
         swal("موفق نبود !", `${message}`, "error");
@@ -195,17 +203,18 @@ const Banks = () => {
     }
   };
 
-  const editBankHandler = async (e) => {
+  const editCostcenterHandler = async (e) => {
     e.preventDefault();
     let message = "";
     let resultCode = "";
     let data = {
       id: id_For_Edit,
       name: editInput_Ref.current.value,
-      typeBank: editSelect_Ref.current.value,
+      projectId: editSelect_Ref.current.value,
+      companyId: 1,
     };
     await axios
-      .put("http://37.32.26.0/api/Bank", data)
+      .put("http://37.32.26.0/api/CostCenter", data)
       .then((response) => {
         resultCode = response.data.result;
         message = response.data.message;
@@ -217,7 +226,7 @@ const Banks = () => {
     if (resultCode === 3) {
       swal("موفق بود !", `${message}`, "success");
       setTimeout(() => {
-        dispatch(banksAction);
+        dispatch(costCenterAction);
       }, 2000);
     } else {
       swal("موفق نبود !", `${message}`, "error");
@@ -227,49 +236,61 @@ const Banks = () => {
   if (!loading) {
     resalt = (
       <div className="w-100">
-        <Modal show={addBank_Modal} modalClose={modalClose}>
-          <form className="form-Bank showdow-lg" onSubmit={addBankHandler}>
-            <h6>اضافه کردن بانک</h6>
+        <Modal show={addCostCenter_Modal} modalClose={modalClose}>
+          <form
+            className="form-Bank showdow-lg"
+            onSubmit={addCostcenterHandler}
+          >
+            <h6>ثبت مرکز هزینه</h6>
             <Input
               type={"text"}
-              placeholder="نام بانک ..."
+              placeholder="نام مرکز هزینه ..."
               Ref={addInput_Ref}
             />
             <div>
               <select className="seletion" ref={addSelect_Ref}>
-                <option value="0">دولتی</option>
-                <option value="1">خصوصی</option>
-                <option value="2">موسسه اعتباری</option>
-                <option value="3">قرض الحسنه</option>
+                {project.map((item) => {
+                  return (
+                    <option key={item.id} value={item.id}>
+                      {item.name}
+                    </option>
+                  );
+                })}
               </select>
             </div>
             <Button type={"submit"}>تایید</Button>
           </form>
         </Modal>
-        <Modal show={editBank_Modal} modalClose={modalClose}>
-          <form className="form-Bank showdow-lg" onSubmit={editBankHandler}>
-            <h6>ویرایش کردن نام بانک</h6>
+        <Modal show={editCostCenter_Modal} modalClose={modalClose}>
+          <form
+            className="form-Bank showdow-lg"
+            onSubmit={editCostcenterHandler}
+          >
+            <h6>ویرایش مرکز هزینه</h6>
             <Input
               type={"text"}
-              placeholder="نام بانک ..."
+              placeholder="نام مرکز هزینه ..."
               Ref={editInput_Ref}
             />
             <div>
               <select className="seletion" ref={editSelect_Ref}>
-                <option value="0">دولتی</option>
-                <option value="1">خصوصی</option>
-                <option value="2">موسسه اعتباری</option>
-                <option value="3">قرض الحسنه</option>
+                {project.map((item) => {
+                  return (
+                    <option key={item.id} value={item.id}>
+                      {item.name}
+                    </option>
+                  );
+                })}
               </select>
             </div>
             <Button type={"submit"}>تایید</Button>
           </form>
         </Modal>
         <TopHeaderCom
-          title="بانک ها"
+          title="لیست مراکز هزینه"
           csvReport={csvReport}
           onPageSizeChanged={onPageSizeChanged}
-          AddBankName={() => dispatch(showAddBankModal)}
+          AddBankName={() => dispatch(showAddCostCenterModal)}
         />
         <div
           className="ag-theme-alpine"
@@ -285,7 +306,7 @@ const Banks = () => {
             onGridReady={onGridReady}
             animateRows={true}
             enableRtl={true}
-            rowData={banks}
+            rowData={CostCenter}
             columnDefs={columnDefs}
             defaultColDef={defaultColDef}
             pagination={true}
@@ -301,4 +322,4 @@ const Banks = () => {
   return <Wrapper>{resalt}</Wrapper>;
 };
 
-export default Banks;
+export default Costcenter;

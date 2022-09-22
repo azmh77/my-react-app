@@ -21,7 +21,7 @@ import Button from "./../../components/UI/Forms/Button/Button";
 
 import "./Project.css";
 
-const Banks = () => {
+const Project = () => {
   let resalt = <Spinners title="در حال بارگذاری اطلاعات ..." />;
   const [id_For_Edit, setId_For_Edit] = useState();
   const addInput_Ref = useRef();
@@ -59,7 +59,7 @@ const Banks = () => {
     {
       headerName: "دستورات",
       field: "id",
-      cellRendererFramework: (id) => (
+      cellRenderer : (id) => (
         <div>
           <button
             className="btn editeBtn"
@@ -276,4 +276,4 @@ const Banks = () => {
   return <Wrapper>{resalt}</Wrapper>;
 };
 
-export default Banks;
+export default Project;

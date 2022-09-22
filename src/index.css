@@ -24,4 +24,5 @@ body {
   background-origin: border-box;
   background-blend-mode: luminosity;
   background-color: var(--dark);
+  height: 100vh;
 }
