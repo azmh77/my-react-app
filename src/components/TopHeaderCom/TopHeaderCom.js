@@ -17,7 +17,7 @@ export default function TopHeaderCom({
             <i className="bi bi-plus-square"></i>
           </button>
         </div>
-        <div className="d-none d-sm-flex align-items-center">
+        <div className="d-flex align-items-center">
           <h6 className="text-center">تعداد سطر</h6>
 
           <select
